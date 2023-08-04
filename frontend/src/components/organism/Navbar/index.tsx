@@ -16,7 +16,6 @@ const Navbar = ({status,statusChange}:NavProp) => {
   return (
     <Stack direction={"row"} justifyContent={"space-between"} margin={"3rem 10rem 1rem 10rem"}>
       <Stack direction={"row"} spacing={2}>
-        {/* <Images src={"logo.svg"} alt={"logo"} /> */}
         <Typo
           className="logoHead"
           variant={"h4"}

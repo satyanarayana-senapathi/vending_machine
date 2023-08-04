@@ -1,8 +1,7 @@
-import { Box, Button, Paper, Stack } from "@mui/material";
+import { Button, Paper, Stack } from "@mui/material";
 import React from "react";
 import Images from "../../atoms/Image";
 import Textfield from "../../atoms/Textfield";
-import Buttons from "../../atoms/Button";
 import Typo from "../../atoms/Typography";
 
 const Contact = () => {

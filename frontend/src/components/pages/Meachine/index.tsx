@@ -11,7 +11,6 @@ import {
 import React, { useState, DragEvent, useEffect } from "react";
 import Typo from "../../atoms/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Images from "../../atoms/Image";
 import Buttons from "../../atoms/Button";
 
 interface Drag {
@@ -101,7 +100,6 @@ const Machine = ({ stateChange }: Props) => {
     {}
   );
 
-  //   console.log(countDuplicates.name);
 
   const handleDragStart = (e: any) => {
     setDragged({
@@ -147,7 +145,6 @@ const Machine = ({ stateChange }: Props) => {
   };
   const addItem = (e: React.MouseEvent<HTMLButtonElement>) => {
     const imgElement = e.currentTarget.firstElementChild as HTMLImageElement;
-    // console.log("imgElement",imgElement)
     setImages((prv) => {
       return [
         ...prv,
