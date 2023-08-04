@@ -6,6 +6,7 @@ import Contact from "./components/organism/Contact";
 import Signup from "./components/organism/Signup";
 import Machine from "./components/pages/Meachine";
 import { useState } from "react";
+import React from "react";
 
 function App() {
   const [status,setStatus]= useState("login")

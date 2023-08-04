@@ -1,14 +1,12 @@
 import {
   Badge,
   Box,
-  Divider,
   Grid,
   IconButton,
   Modal,
   Paper,
   Stack,
   Tooltip,
-  Typography,
 } from "@mui/material";
 import React, { useState, DragEvent, useEffect } from "react";
 import Typo from "../../atoms/Typography";

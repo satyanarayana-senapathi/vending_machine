@@ -1,10 +1,9 @@
 import { Button, Stack } from "@mui/material";
-import Images from "../../atoms/Image";
 import Typo from "../../atoms/Typography";
-import Buttons from "../../atoms/Button";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Contact from "../Contact";
+import React from "react";
 
 interface NavProp{
   status:string;
@@ -32,9 +31,6 @@ const Navbar = ({status,statusChange}:NavProp) => {
       <Button variant={login ? "contained" : "text"} color="success"sx={{ color: "white" }} onClick={()=>{navigate("/");setLogin(!login);setContact(!Contact) ; if(status==="logOut" ){statusChange("login")}}} >
       {status}
       </Button>
-        {/* <Buttons content={"x" } variant={"text"} color="success"/> */}
-        {/* <Buttons id = "navButton" content={"Contact"}  color={"success"}  /> */}
-        {/* <Buttons id = "navButton"   /> */}
       </Stack>
     </Stack>
   );
