@@ -57,7 +57,7 @@ const Machine = ({ stateChange }: Props) => {
   const handleOpen = () => setOpen(true);
   useEffect(() => {
     stateChange("logOut");
-  }, []);
+  });
   const handleClose = () => {
     setOpen(false);
     setImages([]);
