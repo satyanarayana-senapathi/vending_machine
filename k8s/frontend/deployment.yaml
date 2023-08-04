@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-pod
+  template:
+    metadata:
+      labels:
+        app: frontend-pod
+    spec:
+      containers:
+      - name: frontend-container
+        image: ghcr.io/satyanarayana-senapathi/vendingmachine-frontend:v3
+        ports:
+        - containerPort: 80
+      
+      imagePullSecrets:
+      - name: my-ghcr-secret
