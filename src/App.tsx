@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navbar from "./components/organism/Navbar";
+import { Box, Stack } from "@mui/material";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Contact from "./components/organism/Contact";
+import Signup from "./components/organism/Signup";
+import Machine from "./components/pages/Meachine";
+import { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [status,setStatus]= useState("login")
+  return ( 
+    <>
+    <BrowserRouter>
+    
+      <Box className="App" width={"100%"} height={"100vh"}>
+        <Stack className="Container">
+        <Navbar status={status} statusChange={setStatus}/>
+        <Routes>
+          <Route index element={<Signup statusChange={setStatus}/>}/>
+          <Route path="/contact" element={<Contact/>}/>
+          <Route  path="/signup" element={<Signup statusChange={setStatus}/> }/>
+          <Route path="/vendingMachine" element={<Machine stateChange={setStatus}/>}/>
+        </Routes>
+        </Stack>
+      </Box>
+      </BrowserRouter>
+     </>
   );
 }
 
