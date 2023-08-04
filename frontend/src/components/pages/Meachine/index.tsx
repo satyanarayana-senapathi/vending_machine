@@ -40,6 +40,10 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  display:"flex",
+  flexDirection:"column",
+  justifyContent:"center",
+  alignItems:"center",
 };
 interface Props {
   stateChange: (arg0: string) => void;
@@ -589,6 +593,7 @@ const Machine = ({ stateChange }: Props) => {
                     onClick={handleClose}
                     content={"Close"}
                     variant={"contained"}
+                    sx={{ mt: 2 }}
                   ></Buttons>
                 </Box>
               </Modal>
