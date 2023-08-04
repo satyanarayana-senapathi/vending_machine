@@ -8,7 +8,6 @@ import {
   Button,
 } from "@mui/material";
 import React from "react";
-import Buttons from "../../atoms/Button";
 import Images from "../../atoms/Image";
 import Textfield from "../../atoms/Textfield";
 import Typo from "../../atoms/Typography";
