@@ -1,5 +1,5 @@
 .App{
-    background-image: conic-gradient(from 260deg, #458867 180deg , #ffff 90deg);
+    background-image: conic-gradient(from 260deg, #335544 180deg , #ffff 90deg);
 }
 
 .logoHead{
@@ -9,7 +9,7 @@
     -webkit-text-fill-color: transparent; */
     color: rgb(249, 248, 248);
 }
-#items-list{
+#items-totallist{
     border: 10px solid rgb(216, 205, 205);
     padding: 1rem;   
     border-radius: 2%;

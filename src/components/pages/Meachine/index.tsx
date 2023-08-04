@@ -41,11 +41,11 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-interface Props{
-  stateChange:(arg0:string)=> void;
+interface Props {
+  stateChange: (arg0: string) => void;
 }
 
-const Machine = ({stateChange}:Props) => {
+const Machine = ({ stateChange }: Props) => {
   const [total, setTotal] = useState(0);
   const [images, setImages] = useState<Drag[]>([]);
   const [dragged, setDragged] = useState<any>([]);
@@ -53,9 +53,9 @@ const Machine = ({stateChange}:Props) => {
   const [flag, setFlag] = useState<number>(0);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  useEffect(()=>{
+  useEffect(() => {
     stateChange("logOut");
-  },[])
+  }, []);
   const handleClose = () => {
     setOpen(false);
     setImages([]);
@@ -163,14 +163,13 @@ const Machine = ({stateChange}:Props) => {
     setFlag((prev) => prev + 1);
   };
   return (
-    <>
-    
-      <Stack
-        spacing={6}
-        direction={"row"}
-        sx={{ backgroundColor: "#458867", padding: "20px" }}
-      >
-        <Stack id="items-list" spacing={3}>
+    <Grid
+      container
+      sx={{ backgroundColor: "#335544", minHeight: "85.8vh" ,height:"100%",padding:"4rem"}}
+      direction={"row"}
+    >
+      <Grid item xs={12} sm={8} md={6} lg={6} xl={6}>
+        <Stack id="items-totallist" spacing={3}>
           <Stack
             direction={"row"}
             alignItems={"baseline"}
@@ -178,7 +177,6 @@ const Machine = ({stateChange}:Props) => {
             justifyContent={"space-evenly"}
           >
             <Badge badgeContent={`₹ 20`} color="error">
-              {" "}
               <IconButton onClick={addItem}>
                 <Tooltip title={"chips"}>
                   <img
@@ -408,7 +406,12 @@ const Machine = ({stateChange}:Props) => {
             </Badge>
           </Stack>
           <hr id="item-seperator" />
-          <Stack direction={"row"} alignItems={"baseline"} spacing={5}>
+          <Stack
+            direction={"row"}
+            alignItems={"baseline"}
+            justifyContent={"space-evenly"}
+            spacing={5}
+          >
             <Badge badgeContent={`₹ 10`} color="error">
               <IconButton onClick={addItem}>
                 <Tooltip title={"drink"}>
@@ -481,122 +484,119 @@ const Machine = ({stateChange}:Props) => {
             </Badge>
           </Stack>
         </Stack>
+      </Grid>
 
-        <Stack direction={"row"} spacing={10}>
-          <Stack>
+      <Grid xs={12} sm={12} md={12} lg={3} xl={3}  >
+        <Stack justifyContent={"center"} alignItems={"center"}>
+          <Stack justifyContent={"center"} alignItems={"center"}>
+            <Typo
+              variant={"body1"}
+              content={" Drag Your Items Here"}
+              color={"#f6f3f5"}
+              alignItems={"center"}
+            />
+          </Stack>
+          <div
+            draggable="true"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragStart={handleDelete}
+            style={{
+              width: "max-content",
+              minWidth: "250px",
+              maxWidth: "300px",
+              minHeight: "250px",
+              border: "4px dashed #ccc",
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              padding: "10px",
+            }}
+          >
+            {images.map((image: any, index: any) => (
+              <img
+                draggable="true"
+                key={index}
+                src={image.src}
+                id={image.id}
+                alt={`${image.alt}`}
+                style={{ maxWidth: "80%", maxHeight: "50px" }}
+              />
+            ))}
+          </div>
+          <Stack
+            onDrop={handleDropDelete}
+            onDragOver={handleDragOverDelete}
+            sx={{ alignItems: "center", justifyContent: "center" }}
+          >
+            <Tooltip title={"Drag here to delete item"}>
+              <DeleteIcon sx={{ width: "200px", height: "200px" }} />
+            </Tooltip>
+          </Stack>
+        </Stack>
+      </Grid>
+      <Grid item xs={12} sm={6} md={6} lg={3} xl={3}>
+        <Paper sx={{ minWidth: "50%" }}>
+          <Stack padding={5}>
             <Stack justifyContent={"center"} alignItems={"center"}>
+              <Typo variant={"h4"} content={"Bill"} color={"red"} />
+            </Stack>
+            <Typo variant={"body1"} content={"Items List"} color={"Black"} />
+            <>
+              {Object.entries(countDuplicates).map(
+                ([name, { count, id }]: [string, CountDuplicate]) => (
+                  <div key={name}>
+                    <Typo
+                      variant="subtitle1"
+                      content={`${name} --------------- ${count}  X   ${
+                        price[id[0]]
+                      } = ${count * price[id[0]]}`}
+                    />
+                  </div>
+                )
+              )}
+            </>
+            <Stack alignItems={"center"} spacing={3}>
+              -------------------------------------------------
               <Typo
                 variant={"body1"}
-                content={" Drag Your Items Here"}
-                color={"#f6f3f5"}
-                alignItems={"center"}
+                content={`Total Amount = ${total} `}
+                sx={{ alignItems: "flex-end" }}
               />
-            </Stack>
-            <div
-              draggable="true"
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onDragStart={handleDelete}
-              style={{
-                width: "max-content",
-                minWidth: "250px",
-                maxWidth: "300px",
-                minHeight: "250px",
-
-                border: "4px dashed #ccc",
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "space-around",
-                gap: "10px",
-                padding: "10px",
-              }}
-            >
-              {images.map((image: any, index: any) => (
-                <img
-                  draggable="true"
-                  key={index}
-                  src={image.src}
-                  id={image.id}
-                  alt={`${image.alt}`}
-                  style={{ maxWidth: "80%", maxHeight: "50px" }}
-                />
-              ))}
-            </div>
-            <Stack
-              onDrop={handleDropDelete}
-              onDragOver={handleDragOverDelete}
-              sx={{ alignItems: "center", justifyContent: "center" }}
-            >
-              <Tooltip title={"Drag here to delete item"}>
-                <DeleteIcon sx={{ width: "200px", height: "200px" }} />
-              </Tooltip>
+              -------------------------------------------------
+              <Buttons
+                content={"Buy Now"}
+                variant={"contained"}
+                onClick={handleOpen}
+              />
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typo id="modal-modal-title" variant="h5" content={" Bill"} />
+                  <Typo
+                    id="modal-modal-description"
+                    sx={{ mt: 2 }}
+                    variant={"h6"}
+                    content={`Total Amount: ${total}`}
+                  />
+                  <Buttons
+                    onClick={handleClose}
+                    content={"Close"}
+                    variant={"contained"}
+                  ></Buttons>
+                </Box>
+              </Modal>
             </Stack>
           </Stack>
-
-          <Paper sx={{ minWidth: "22rem" }}>
-            <Stack padding={5}>
-              <Stack justifyContent={"center"} alignItems={"center"}>
-                <Typo variant={"h4"} content={"Bill"} color={"red"} />
-              </Stack>
-              <Typo variant={"body1"} content={"Items List"} color={"Black"} />
-              <>
-                {Object.entries(countDuplicates).map(
-                  ([name, { count, id }]: [string, CountDuplicate]) => (
-                    <div key={name}>
-                      <Typo
-                        variant="subtitle1"
-                        content={`${name} --------------- ${count}  X   ${
-                          price[id[0]]
-                        } = ${count * price[id[0]]}`}
-                      />
-                    </div>
-                  )
-                )}
-              </>
-              <Stack alignItems={"center"} spacing={5}>
-                ----------------------------------------
-                <Typo
-                  variant={"body1"}
-                  content={`Total Amount = ${total} `}
-                  sx={{ alignItems: "flex-end" }}
-                />
-                ----------------------------------------
-                <Buttons
-                  content={"Buy Now"}
-                  variant={"contained"}
-                  onClick={handleOpen}
-                />
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style}>
-                    <Typo
-                      id="modal-modal-title"
-                      variant="h5"
-                      content={" Bill"}
-                    />
-                    <Typo
-                      id="modal-modal-description"
-                      sx={{ mt: 2 }}
-                      variant={"h6"}
-                      content={`Total Amount: ${total}`}
-                    />
-                    <Buttons
-                      onClick={handleClose}
-                      content={"Close"}
-                      variant={"contained"}
-                    ></Buttons>
-                  </Box>
-                </Modal>
-              </Stack>
-            </Stack>
-          </Paper>
-        </Stack>
-      </Stack>
-    </>
+        </Paper>
+      </Grid>
+    </Grid>
   );
 };
 
